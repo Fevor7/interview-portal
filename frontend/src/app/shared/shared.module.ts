@@ -6,7 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectRoleComponent } from './select-role/select-role.component';
 import { UserFormMangerService } from './select-role/service/user-form-manger.service';
 import { FormValidatorService } from './validator/validator-form/form-validator.service';
-import { ValidatorMessageComponent } from './validator/validator-messge/validator-message.directive';
+import { LightFieldService } from './validator/service/light-field.service';
+
+import { MessageWindowComponent } from './pop-up-window/message-window/message-window.component';
+import { ValidatorMessageComponent } from './validator/validator-message/validator-message.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,10 +18,27 @@ import { ValidatorMessageComponent } from './validator/validator-messge/validato
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
-  declarations: [ ShowAuthedDirective, SelectUserComponent, ValidatorMessageComponent, SelectRoleComponent ],
-  providers: [ UserFormMangerService, FormValidatorService],
-  exports: [ ShowAuthedDirective, SelectUserComponent, ValidatorMessageComponent, SelectRoleComponent ]
+  declarations: [
+    ShowAuthedDirective,
+    SelectUserComponent,
+    ValidatorMessageComponent,
+    SelectRoleComponent,
+    MessageWindowComponent
+  ],
+  providers: [
+    UserFormMangerService, 
+    FormValidatorService,
+    LightFieldService
+  ],
+  exports: [
+    ShowAuthedDirective, 
+    SelectUserComponent, 
+    ValidatorMessageComponent, 
+    SelectRoleComponent,
+    MessageWindowComponent
+  ]
 })
 export class SharedModule { }

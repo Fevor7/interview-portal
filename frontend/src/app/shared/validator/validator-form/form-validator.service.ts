@@ -16,8 +16,8 @@ export class FormValidatorService {
       }
     };
   }
-  public langthValidator(): ValidatorFn[] {
-    return [Validators.required, Validators.minLength(6), Validators.maxLength(20)]
+   public lengthValidator(): ValidatorFn[] {
+    return [Validators.required, Validators.minLength(1), Validators.maxLength(200)]
   }
 
   public phoneValidator(): ValidatorFn {
@@ -27,6 +27,17 @@ export class FormValidatorService {
         return null;
       } else {
         return pattern.test(control.value) ? null : { custom: `Invalid phone number` };
+      }
+    };
+  }
+
+  public dateValidator(): ValidatorFn {
+    const pattern: RegExp = /[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/im;
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!(control.dirty || control.touched)) {
+        return null;
+      } else {
+        return pattern.test(control.value) ? null : { custom: `Invalid date` };
       }
     };
   }
